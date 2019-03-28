@@ -42,4 +42,19 @@ public class UserServices implements IUserServices{
     public User get(String name) {
         return userRepository.getUserByUserName(name);
     }
+
+    @Override
+    public User update(User user) {
+        userRepository.update(user);
+        return userRepository.getUserByUserName(user.getName());
+    }
+
+    @Override
+    public User delete(UUID id) {
+        User usuarioABorrar = userRepository.find(id);
+        userRepository.delete(usuarioABorrar);
+        return usuarioABorrar;
+    }
+    
+    
 }
