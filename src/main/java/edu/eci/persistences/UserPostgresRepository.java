@@ -30,7 +30,21 @@ public class UserPostgresRepository implements IUserRepository {
 
     @Override
     public User getUserByUserName(String userName) {
-        return null;
+        String query = "SELECT * FROM \"users\" WHERE \"users\".name=" + userName;
+        try (Connection connection = dataSource.getConnection()) {
+            Statement stmt = connection.createStatement(); // instruccion con la conexion
+            ResultSet rs = stmt.executeQuery(query); // ejecutar la consulta en la base de datos pro la conexion
+            User user = null;
+            while (rs.next()) {
+                    user = new User();
+                    user.setName(rs.getString("name"));
+                    user.setId(UUID.fromString(rs.getString("id")));
+            }
+            return user;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

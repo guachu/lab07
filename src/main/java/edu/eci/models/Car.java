@@ -9,6 +9,10 @@ public class Car implements Serializable{
     private String licencePlate;
     private String brand;
     
+    public Car(){
+        
+    }
+    
     public Car( UUID id, String licencePlate, String brand) {
         this.id = id;
         this.licencePlate = licencePlate;
