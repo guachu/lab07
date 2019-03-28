@@ -23,7 +23,7 @@ import java.util.UUID;
 @Qualifier("UserPostgresRepository")
 public class UserPostgresRepository implements IUserRepository {
 
-    private String dbUrl = "postgres://zqcbaifthkvbtq:46f2dd43260eb9ac4aa9b5f828d1c92c3352c149a1851ae43badd11456adbf36@ec2-54-225-95-183.compute-1.amazonaws.com:5432/ddm2mdl9lqea9l";
+    private String dbUrl = "jdbc:postgresql://ec2-54-225-95-183.compute-1.amazonaws.com:5432/ddm2mdl9lqea9l";
 
     @Autowired
     private DataSource dataSource;
@@ -86,6 +86,10 @@ public class UserPostgresRepository implements IUserRepository {
         } else {
             HikariConfig config = new HikariConfig();
             config.setJdbcUrl(dbUrl);
+            config.setDriverClassName("org.postgresql.Driver");
+            config.setUsername("zqcbaifthkvbtq");
+            config.setPassword("46f2dd43260eb9ac4aa9b5f828d1c92c3352c149a1851ae43badd11456adbf36");
+            config.setMaximumPoolSize(1000);
             return new HikariDataSource(config);
         }
     }
