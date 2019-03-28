@@ -12,11 +12,13 @@ import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author jfmor
  */
+@Component
 public class CarServices implements ICarServices{
 
     @Autowired
@@ -37,7 +39,7 @@ public class CarServices implements ICarServices{
     @Override
     public Car updateCar(Car car) {
         carRepository.update(car);
-        return carRepository.getCarByCarName(car.getName());
+        return carRepository.getCarByCarLicence(car.getLicencePlate());
     }
 
     @Override
@@ -53,8 +55,8 @@ public class CarServices implements ICarServices{
     }
 
     @Override
-    public Car get(String name) {
-        return carRepository.getCarByCarName(name);
+    public Car get(String licence) {
+        return carRepository.getCarByCarLicence(licence);
     }
 
     @Override

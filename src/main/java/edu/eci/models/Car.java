@@ -4,25 +4,17 @@ import java.io.Serializable;
 import java.util.UUID;
 
 public class Car implements Serializable{
-    private String name;
+
     private UUID id;
     private String licencePlate;
     private String brand;
     
-    public Car(String name, UUID id, String licencePlate, String brand) {
-        this.name = name;
+    public Car( UUID id, String licencePlate, String brand) {
         this.id = id;
         this.licencePlate = licencePlate;
         this.brand = brand;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public UUID getId() {
         return id;

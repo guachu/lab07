@@ -12,11 +12,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import static java.util.stream.Collectors.toList;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author jfmor
  */
+@Component
+@Qualifier("CarMemoryRepository")
 public class CarMemoryRepository implements ICarRepository{
 
     public static List<Car> carsContainer;
@@ -30,10 +34,10 @@ public class CarMemoryRepository implements ICarRepository{
     
     
     @Override
-    public Car getCarByCarName(String carName) {
+    public Car getCarByCarLicence(String carLicence) {
         return CarMemoryRepository.getContainer()
         .stream()
-        .filter(c -> carName.equals(c.getName()))
+        .filter(c -> carLicence.equals(c.getLicencePlate()))
         .findFirst()
         .get();
     }
